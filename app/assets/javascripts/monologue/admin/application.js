@@ -13,6 +13,7 @@
 //= require monologue/bootstrap/bootstrap-datepicker-es
 //= require ckeditor/override
 //= require ckeditor/init
+//= require_tree ../../ckeditor
 //= require monologue/admin/ckeditor-config
 //= require monologue/admin/posts
 //= require select2
