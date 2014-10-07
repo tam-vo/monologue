@@ -12,8 +12,8 @@
 //= require monologue/bootstrap/bootstrap-datepicker-pt
 //= require monologue/bootstrap/bootstrap-datepicker-es
 //= require ckeditor/init
+//= require ../../ckeditor/plugins/youtube/plugin
 //= require_tree ../../ckeditor/plugins/youtube/lang
-//= require_tree ../../ckeditor
 //= require monologue/admin/ckeditor-config
 //= require monologue/admin/posts
 //= require select2
