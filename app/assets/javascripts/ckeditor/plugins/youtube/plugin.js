@@ -7,7 +7,7 @@
 ( function() {
 	CKEDITOR.plugins.add( 'youtube',
 	{
-		lang: [ 'en', 'pt', 'ja', 'hu', 'it', 'fr', 'tr', 'ru', 'de', 'ar', 'nl', 'pl', 'vi', 'zh', 'el'],
+		lang: [ 'en'],
 		init: function( editor )
 		{
 			editor.addCommand( 'youtube', new CKEDITOR.dialogCommand( 'youtube', {
@@ -325,7 +325,7 @@
 								content += '</div>';
 							}
 						}
-						
+
 						var element = CKEDITOR.dom.element.createFromHtml( content );
 						var instance = this.getParentEditor();
 						instance.insertElement(element);
