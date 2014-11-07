@@ -10,7 +10,11 @@ Monologue::Engine.routes.draw do
     get "logout" => "sessions#destroy"
     get "login" => "sessions#new"
     resources :sessions
-    resources :posts
+    resources :posts do
+      collection do
+        get :suggest_slug
+      end
+    end
     resources :categories
     resources :users
     get "comments" => "comments#show", as: "comments"

@@ -1,7 +1,7 @@
 class Monologue::Post < ActiveRecord::Base
   has_many :taggings
   has_many :tags, -> { order "id ASC" }, through: :taggings, dependent: :destroy
-  before_validation :generate_url
+  before_validation :generate_assign_url
   belongs_to :user
   belongs_to :category
 
@@ -53,14 +53,29 @@ class Monologue::Post < ActiveRecord::Base
     @number_of_pages = self.count / per_page + (self.count % per_page == 0 ? 0 : 1)
   end
 
-  private
-
-  def generate_url
-    return unless self.url.blank?
-    year = self.published_at.class == ActiveSupport::TimeWithZone ? self.published_at.year : DateTime.now.year
-    self.url = "#{year}/#{self.title.parameterize}"
+  def self.generate_uniq_url(title)
+    slug = title.to_url
+    valid = true
+    base_slug = slug
+    if Monologue::Post.find_by_url(slug)
+      index = 2
+      slug = "#{base_slug}-#{index}"
+      while Monologue::Post.find_by_url(slug)
+        index += 1
+        slug = "#{base_slug}-#{index}"
+      end
+    end
+    slug
   end
 
+  def generate_assign_url
+    return unless self.url.blank?
+    return if self.title.blank?
+
+    self.slug = Post.generate_uniq_url(self.title)
+  end
+
+  private
   def url_do_not_start_with_slash
     errors.add(:url, I18n.t("activerecord.errors.models.monologue/post.attributes.url.start_with_slash")) if self.url.start_with?("/")
   end

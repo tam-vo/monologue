@@ -1,9 +1,10 @@
 class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   respond_to :html
   before_filter :load_post, only: [:edit, :update]
-  
+
   def index
-    @posts = Monologue::Post.default
+    @page = params[:page].nil? ? 1 : params[:page]
+    @posts = Monologue::Post.page(@page).includes(:user).default
   end
 
   def new
@@ -33,10 +34,22 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   def edit
   end
 
+  def suggest_slug
+    title = params[:title]
+    slug = Monologue::Post.generate_uniq_url(title)
+
+    render json: {slug: slug}
+  end
+
   def update
+    if post_params["excerpt"] && post_params["excerpt"].length > 1000
+      post_params["excerpt"] = post_params["excerpt"][0..1000]
+    end
+
     if @post.update(post_params)
-      prepare_flash_and_redirect_to_edit()
+      prepare_flash_and_redirect_to_edit
     else
+      flash[:alert] = @post.errors.to_a.join(". ")
       render :edit
     end
   end
@@ -65,6 +78,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :category_id)
   end
 end

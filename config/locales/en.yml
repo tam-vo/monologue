@@ -101,7 +101,7 @@ en:
       admin:
         nav_bar:
           add_a_monologue: "Add a monologue"
-          list_monologues: "List of monologues"
+          list_monologues: "Posts"
           comments: "Comments"
           cache: "Manage cache"
           edit_user_info: "My account"
