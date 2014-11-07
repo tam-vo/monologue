@@ -7,6 +7,7 @@
       %th= t(".author")
       %th
       %th
+      %th
   %tbody
     - @posts.each do |post|
       %tr
@@ -15,5 +16,6 @@
           %span{:class => "label label-#{post.published ? "success" : "important"}"}= post.published ? t(".published") : t(".not_published")
         %td
           %span= post.user.name
+        %td= post.id == @category.main_post_id ? "Chính" : ""
         %td= link_to t(".edit"), edit_admin_post_path(post), class: "btn btn-small"
         %td= link_to t(".delete"), [:admin, post],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger"

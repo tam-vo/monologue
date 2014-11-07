@@ -1,7 +1,8 @@
 = category.error_messages
 = category.text_field :name, label:  "Name"
 = category.text_field :slug, label:  "Slug"
-= category.select :main_post_id, options_from_collection_for_select(Monologue::Post.all, :id, :title), {include_blank: true}, class: "form-control"
+- if category.object.try(:persisted?)
+  = category.select :main_post_id, options_from_collection_for_select(category.object.posts, :id, :title, category.object.main_post_id), {include_blank: true}, class: "form-control"
 
 .form-actions
   = category.button t(".save"), class:  "btn btn-large btn-primary"
