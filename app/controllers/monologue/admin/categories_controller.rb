@@ -13,7 +13,7 @@ class Monologue::Admin::CategoriesController < Monologue::Admin::BaseController
   def create
     @category = Monologue::Category.new category_params
     if @category.save
-      prepare_flash_and_redirect_to_edit()
+      prepare_flash_and_redirect
     else
       render :new
     end
@@ -26,7 +26,7 @@ class Monologue::Admin::CategoriesController < Monologue::Admin::BaseController
     if @category.update(category_params)
       @category.save
 
-      prepare_flash_and_redirect_to_edit()
+      prepare_flash_and_redirect
     else
       render :index
     end
@@ -46,9 +46,10 @@ private
     @category = Monologue::Category.find(params[:id])
   end
 
-  def prepare_flash_and_redirect_to_edit
+  def prepare_flash_and_redirect
     flash[:notice] =  "Saved"
-    redirect_to edit_admin_category_path(@category)
+    # redirect_to edit_admin_category_path(@category)
+    redirect_to admin_categories_path
   end
 
   def category_params

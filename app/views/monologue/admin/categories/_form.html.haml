@@ -1,6 +1,10 @@
 = category.error_messages
-= category.text_field :name, label:  "Name", class:  "span6"
+= category.text_field :name, label:  "Name"
+= category.select :main_post_id, options_from_collection_for_select(Monologue::Post.all, :id, :title), {include_blank: true}, class: "form-control"
+
 .form-actions
   = category.button t(".save"), class:  "btn btn-large btn-primary"
+
 :javascript
-  $("#category_tag_list").select2({tags: #{Monologue::Tag.all.map{|t| t.name }.to_json.html_safe} });
+  $("#category_main_post_id").select2()
+

@@ -1,6 +1,6 @@
 class Monologue::Category < ActiveRecord::Base
   has_many :posts
-  belongs_to :main_post, foreign_key: :main_post_id
+  belongs_to :main_post, class_name: "Post", foreign_key: :main_post_id
   before_validation :generate_slug
 
   validates :name, :slug, presence: true
