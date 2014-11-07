@@ -20,6 +20,8 @@ Gem::Specification.new do |s|
   s.add_dependency "coffee-rails",'~> 4.0.0'
   s.add_dependency "sass-rails",'~> 4.0.0'
   s.add_dependency "truncate_html"
+  s.add_dependency "stringex"
+  s.add_dependency "haml"
   s.add_dependency "jquery-rails"
   s.add_dependency "ckeditor",'~> 4.1.0'
   s.add_dependency 'select2-rails', '~> 3.2'

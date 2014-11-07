@@ -1,0 +1,6 @@
+= category.error_messages
+= category.text_field :name, label:  "Name", class:  "span6"
+.form-actions
+  = category.button t(".save"), class:  "btn btn-large btn-primary"
+:javascript
+  $("#category_tag_list").select2({tags: #{Monologue::Tag.all.map{|t| t.name }.to_json.html_safe} });

@@ -11,6 +11,7 @@ Monologue::Engine.routes.draw do
     get "login" => "sessions#new"
     resources :sessions
     resources :posts
+    resources :categories
     resources :users
     get "comments" => "comments#show", as: "comments"
 
