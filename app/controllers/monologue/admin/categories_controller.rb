@@ -1,6 +1,6 @@
 class Monologue::Admin::CategoriesController < Monologue::Admin::BaseController
   respond_to :html
-  before_filter :load_category, only: [:edit, :update]
+  before_filter :load_category, only: [:show, :edit, :update]
 
   def index
     @categories = Monologue::Category.all
@@ -8,6 +8,10 @@ class Monologue::Admin::CategoriesController < Monologue::Admin::BaseController
 
   def new
     @category = Monologue::Category.new
+  end
+
+  def show
+    @posts = @category.posts
   end
 
   def create
