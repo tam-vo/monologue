@@ -3,6 +3,7 @@
     <tr>
       <th><%= t(".title")%></th>
       <th><%= t(".status")%></th>
+      <th>Category</th>
       <th><%= t(".author")%></th>
       <th></th>
       <th></th>
@@ -13,6 +14,13 @@
       <tr>
         <td><%= link_to post.title, edit_admin_post_path(post) %></td>
         <td><span class="label label-<%= post.published ? "success" : "important" %>"><%= post.published ? t(".published") : t(".not_published") %></span></td>
+        <td>
+          <% if post.category_id.present? %>
+            <a href="<%= admin_category_path(post.category_id) %>"
+            <span><%= post.category_name %></span>
+            </a>
+          <% end %>
+        </td>
         <td><span><%= post.user.name %></span> </td>
         <td><%= link_to t(".edit"), edit_admin_post_path(post), class: "btn btn-small" %></td>
         <td><%= link_to t(".delete"), [:admin, post],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger" %></td>
