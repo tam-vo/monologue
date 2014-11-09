@@ -70,7 +70,7 @@ private
 
   def prepare_flash_and_redirect_to_edit
     if @post.published_in_future? && ActionController::Base.perform_caching
-      flash[:warning] = I18n.t("monologue.admin.posts.#{params[:action]}.saved_with_future_date_and_cache")
+      flash[:notice] = I18n.t("monologue.admin.posts.#{params[:action]}.saved_with_future_date_and_cache")
     else
       flash[:notice] =  I18n.t("monologue.admin.posts.#{params[:action]}.saved")
     end
@@ -78,6 +78,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :category_id)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :category_id, :position)
   end
 end
