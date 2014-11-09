@@ -12,9 +12,9 @@
         %td= link_to category.name, admin_category_path(category)
         %td= category.slug
         %td
-          - if category.main_post_id
-            = link_to category.main_post.title, edit_admin_post_path(category.main_post)
-        %td= link_to t(".edit"), edit_admin_category_path(category), class: "btn btn-small"
-        %td= link_to t(".delete"), [:admin, category],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger"
+          - if main_post = category.main_post
+            = link_to main_post.title, edit_admin_post_path(main_post)
+        %td= link_to "Edit Category", edit_admin_category_path(category), class: "btn btn-small"
+        %td= link_to "Delete Category", [:admin, category],data: {confirm: 'Are you sure?'}, method: :delete, class: "btn btn-small btn-danger"
 
 = link_to "Create new category", new_admin_category_path

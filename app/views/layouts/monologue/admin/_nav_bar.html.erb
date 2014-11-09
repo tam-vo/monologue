@@ -3,8 +3,8 @@
     <div class="container" data-monologue="nav-bar">
       <%= link_to "Monologue", admin_path, class: "brand" %>
       <ul class="nav pull-left" data-monologue="nav-bar-left">
-        <%= activable_li_tag_with_link t(".add_a_monologue"), new_admin_post_path %>
-        <%= activable_li_tag_with_link t(".list_monologues"), admin_posts_path, admin_path %>
+        <%= activable_li_tag_with_link "Create new post", new_admin_post_path %>
+        <%= activable_li_tag_with_link "List posts", admin_posts_path, admin_path %>
         <%= activable_li_tag_with_link "Categories", admin_categories_path %>
         <%= activable_li_tag_with_link t(".comments"), admin_comments_path %>
       </ul>

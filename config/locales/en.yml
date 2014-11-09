@@ -100,7 +100,7 @@ en:
     monologue:
       admin:
         nav_bar:
-          add_a_monologue: "Add a monologue"
+          add_a_monologue: "Create post"
           list_monologues: "Posts"
           comments: "Comments"
           cache: "Manage cache"
