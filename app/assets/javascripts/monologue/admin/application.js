@@ -8,9 +8,6 @@
 //= require jquery_ujs
 //= require monologue/bootstrap/bootstrap.min
 //= require monologue/bootstrap/bootstrap-datepicker
-//= require monologue/bootstrap/bootstrap-datepicker-fr
-//= require monologue/bootstrap/bootstrap-datepicker-pt
-//= require monologue/bootstrap/bootstrap-datepicker-es
 //= require ckeditor/init
 //= require ../../ckeditor/plugins/youtube/plugin
 //= require_tree ../../ckeditor/plugins/youtube/lang
