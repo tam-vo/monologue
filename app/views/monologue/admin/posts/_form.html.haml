@@ -20,7 +20,11 @@
 = post.text_field :published_at, label:  t(".published_at"), data: {datepicker: "datepicker"}, value: post.object.published_at.nil? ? "" : post.object.published_at.strftime("%Y-%m-%d")
 = post.text_field :position, label: "Position"
 = post.text_field :tag_list, label:  raw(t(".tags"))
-= post.check_box :published, label:  t(".published")
+.field-group
+  = post.check_box :published, label:  t(".published")
+.field-group
+  = post.check_box :pinned, label: "Pinned Posts (Bài viết quan trọng)"
+%hr
 %ul.links
   %li
     Link:

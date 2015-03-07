@@ -25,7 +25,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
     if @post.save
-      prepare_flash_and_redirect_to_edit()
+      prepare_flash_and_redirect_to_index
     else
       render :new
     end
@@ -47,7 +47,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
     end
 
     if @post.update(post_params)
-      prepare_flash_and_redirect_to_edit
+      prepare_flash_and_redirect_to_index
     else
       flash[:alert] = @post.errors.to_a.join(". ")
       render :edit
@@ -68,16 +68,16 @@ private
     @post = Monologue::Post.find(params[:id])
   end
 
-  def prepare_flash_and_redirect_to_edit
+  def prepare_flash_and_redirect_to_index
     if @post.published_in_future? && ActionController::Base.perform_caching
       flash[:notice] = I18n.t("monologue.admin.posts.#{params[:action]}.saved_with_future_date_and_cache")
     else
       flash[:notice] =  I18n.t("monologue.admin.posts.#{params[:action]}.saved")
     end
-    redirect_to edit_admin_post_path(@post)
+    redirect_to admin_posts_path
   end
 
   def post_params
-    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :category_id, :position)
+    params.require(:post).permit(:published, :tag_list,:title,:content,:url,:published_at, :category_id, :position, :pinned)
   end
 end
