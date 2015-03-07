@@ -3,10 +3,14 @@ class Monologue::ApplicationController < ApplicationController
 
   layout Monologue::Config.layout if Monologue::Config.layout # TODO: find a way to test that. It was asked in issue #54 (https://github.com/jipiboily/monologue/issues/54)
 
-  before_filter :recent_posts, :all_tags, :archive_posts
+  before_filter :recent_posts, :all_tags, :archive_posts, :pinned_posts
 
   def recent_posts
-    @recent_posts = Monologue::Post.published.limit(3)
+    @recent_posts = Monologue::Post.published.limit(5)
+  end
+
+  def pinned_posts
+    @pinned_posts = Monologue::Post.pinned.limit(5)
   end
 
   def all_tags

@@ -7,6 +7,7 @@ class Monologue::Post < ActiveRecord::Base
 
   scope :default,  -> {order("published_at DESC, monologue_posts.created_at DESC, monologue_posts.updated_at DESC") }
   scope :published, -> { default.where(published: true).where("published_at <= ?", DateTime.now) }
+  scope :pinned, -> { where(pinned: true) }
   scope :blog, -> { where(category_id: nil) }
 
   default_scope{includes(:tags)}

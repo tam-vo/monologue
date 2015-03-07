@@ -70,6 +70,7 @@ be available at `/monologue`.
 ### 3. Migrate Monologue's database tables
 Run these commands:
 
+0. $`bundle exec rails g migration...`
 1. $`bundle exec rake monologue:install:migrations`
 2. $`bundle exec rake db:create` (only if this is a new project)
 3. $`bundle exec rake db:migrate`
@@ -140,3 +141,4 @@ Zurb for the "social foundicons".
 
 [1]: http://www.fsf.org/licensing/essays/free-sw.html
 [2]: https://github.com/jipiboily/monologue/issues
+
