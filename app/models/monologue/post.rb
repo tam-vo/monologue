@@ -10,6 +10,8 @@ class Monologue::Post < ActiveRecord::Base
   scope :pinned, -> { where(pinned: true) }
   scope :blog, -> { where(category_id: nil) }
 
+  scope :order_incr_position, -> { order("position ASC") }
+
   default_scope{includes(:tags)}
 
   validates :user_id, presence: true

@@ -10,7 +10,7 @@ class Monologue::ApplicationController < ApplicationController
   end
 
   def pinned_posts
-    @pinned_posts = Monologue::Post.pinned.limit(5)
+    @pinned_posts = Monologue::Post.pinned.order_incr_position.limit(5)
   end
 
   def all_tags
