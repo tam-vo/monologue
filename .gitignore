@@ -16,3 +16,9 @@ coverage/
 
 Gemfile.lock
 tmp/
+*.lock
+
+.ruby-version
+.rbenv-version
+.rvmrc
+
