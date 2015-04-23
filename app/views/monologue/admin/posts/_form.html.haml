@@ -1,19 +1,10 @@
 = post.error_messages
 = post.text_field :title, label:  t(".title"), class:  "span6"
 = post.text_area :content, label:  t(".content"), class:  "span12 ckeditor", id: "post_content"
-%small
-  %ul
-    %li
-      Các bước để thêm hình ảnh:
-      %ol
-        %li Bấm vào nút "Show Blocks" (chỉ làm 1 lần nếu chưa)
-        %li Chọn hình ảnh
-        %li Bấm vào nút "Create DIV container" và thêm class là 'photo'
-        %li Copy tiêu đề cho hình ảnh đó mà vào nhóm DIV (không cần canh lề)
-    %li
-      Add class 'master' for img to choose this image as thumbnail for post
-    %li
-      Add class 'hidden' for img to hide this image
+- if post.object.respond_to?(:is_markdown)  && !post.object.persisted?
+  %a{href: new_admin_post_path} Use WYSWYG editor
+  |
+  %a{href: new_admin_post_path(markdown: "true")} Use Markdown editor
 = post.select :category_id, options_from_collection_for_select(Monologue::Category.all, :id, :name, post.object.category_id), {include_blank: true}, class: "form-control"
 = post.text_area :excerpt, label:  "Excerpt", class:  "span12", id: "post_excerpt"
 = post.text_field :url, label:  raw(t(".url.caption", default_url: "#{DateTime.now.year}/#{t(".url.generated_title")}", root: monologue.root_path))

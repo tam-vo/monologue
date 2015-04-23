@@ -9,6 +9,9 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
 
   def new
     @post = Monologue::Post.new
+    if @post.respond_to?(:is_markdown) && params[:markdown] == "true"
+      @post.is_markdown = true
+    end
   end
 
   ## Preview a post without saving.
@@ -24,6 +27,9 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   def create
     @post = Monologue::Post.new post_params
     @post.user_id = monologue_current_user.id
+    if @post.respond_to?(:is_markdown) && params[:markdown] == "true"
+      @post.is_markdown = true
+    end
     if @post.save
       prepare_flash_and_redirect_to_index
     else
