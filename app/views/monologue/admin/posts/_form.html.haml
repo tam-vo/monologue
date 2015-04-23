@@ -25,10 +25,11 @@
 .field-group
   = post.check_box :pinned, label: "Pinned Posts (Bài viết quan trọng)"
 %hr
-%ul.links
-  %li
-    Link:
-    %a{href: post.object.full_url, target: "_blank"}= post.object.full_url
+- if post.object.persisted?
+  %ul.links
+    %li
+      Link:
+      %a{href: post.object.full_url, target: "_blank"}= post.object.full_url
 .form-actions
   = post.button t(".save"), class:  "btn btn-large btn-primary"
   = post.button t(".preview"), class: "btn btn-large", type: "button", value: "preview"
