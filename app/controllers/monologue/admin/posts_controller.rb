@@ -63,7 +63,7 @@ class Monologue::Admin::PostsController < Monologue::Admin::BaseController
   def destroy
     post = Monologue::Post.find(params[:id])
     if post.destroy
-      redirect_to admin_posts_path, notice:  I18n.t("monologue.admin.posts.delete.removed")
+      redirect_to admin_posts_path, notice: I18n.t("monologue.admin.posts.delete.removed")
     else
       redirect_to admin_posts_path, alert: I18n.t("monologue.admin.posts.delete.failed")
     end
