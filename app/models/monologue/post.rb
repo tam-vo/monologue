@@ -2,6 +2,7 @@ class Monologue::Post < ActiveRecord::Base
   has_many :taggings
   has_many :tags, -> { order "id ASC" }, through: :taggings, dependent: :destroy
   before_validation :generate_assign_url
+  before_validation :assign_data
   belongs_to :user
   belongs_to :category
 
@@ -78,7 +79,7 @@ class Monologue::Post < ActiveRecord::Base
     return unless self.url.blank?
     return if self.title.blank?
 
-    self.slug = Post.generate_uniq_url(self.title)
+    self.url = Post.generate_uniq_url(self.title)
   end
 
   private
@@ -86,4 +87,8 @@ class Monologue::Post < ActiveRecord::Base
     errors.add(:url, I18n.t("activerecord.errors.models.monologue/post.attributes.url.start_with_slash")) if self.url.start_with?("/")
   end
 
+  def assign_data
+    self.published_at = Time.now if self.published_at.blank?
+    self.published = false if self.published.nil?
+  end
 end
